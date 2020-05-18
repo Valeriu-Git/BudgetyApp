@@ -24,7 +24,7 @@ print(TEMPLATE_DIR);
 SECRET_KEY = '06rgg3*j%otd(6d8ex=o@v)fnoeaw=y@6=@#hs-73ac%e#%_ye'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
