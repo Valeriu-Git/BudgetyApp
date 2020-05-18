@@ -1,0 +1,431 @@
+body{
+  height: 100%;
+  font-family: 'Concert One', cursive;
+
+
+  margin: 0px;
+  min-height: 500px;
+  display: grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-template-rows: 64px  250px 130px auto;
+  grid-template-areas:
+  "A E F"
+  ". B ."
+  "C C C"
+  "D D D";
+}
+
+
+/* animatie pentru a face un element sa dispara */
+@keyframes appear {
+  from{ opacity: 0;}
+  to{opacity: 1;
+  visibility: hidden;}
+}
+
+@keyframes blue-border {
+from{border-color: transparent;}
+to{border-color:DodgerBlue;}
+}
+
+@keyframes red-border {
+from{border-color: transparent;}
+to{border-color:#FF5454;}
+}
+ #brand-space
+{
+  grid-area: A;
+  display: flex;
+  align-items: center;
+}
+
+#brand-space #brand
+{
+  display: flex;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.user-authentication{
+grid-area:F;
+display: flex;
+justify-content: flex-end;
+align-items: center;
+}
+.register{
+  display: flex;
+  height: 100%;
+  width: 100px;
+  justify-content: center;
+  align-items: center;
+  background: #53BBFF;
+  border-radius: 20px;
+}
+
+.register a,.login a,.sign-out a{
+  color: white;
+  text-decoration: none;
+  padding: 25px 15px;
+}
+
+.login
+{
+  display: flex;
+  height: 100%;
+  width: 100px;
+  background: #FF5353;
+  border-radius: 20px;
+  margin-left: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.user{
+  display: flex;
+  max-height: 100%;
+  background: #53BBFF;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-right: 10px;
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.sign-out{
+  display:flex;
+  height: 100%;
+  width: 100px;
+  margin-right: 15px;
+  background:#FF5353;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+#brand-space #brand #brand-text, #balance p{
+  margin:0;
+
+  font-family: 'Dancing Script', cursive;
+  font-size: 55px;
+  color: #FD6666;
+}
+
+#balance{
+  display: flex;
+  grid-area: E;
+  align-items: center;
+  justify-content: center;
+}
+
+#balance .balance-value{
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 40px;
+}
+
+#data
+{
+ grid-area: B;
+ display: flex;
+}
+
+#data div
+{display: flex;
+flex-basis: 100%;
+}
+
+#data .currentstate
+{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#data .currentstate div
+{
+    display: flex;
+    align-items:center;
+    border-radius: 5px;
+    color:white;
+}
+
+#data .currentstate .totalincome
+{
+  margin-top: 30px;
+  background: #53BBFF;
+  margin-bottom: 10px;
+}
+
+#data .currentstate .totalexpense
+{
+  margin-bottom: 30px;
+  background: #FF5353;
+}
+
+#data .currentstate .totalincome p:nth-child(1), #data .currentstate .totalexpense p:nth-child(1)
+{
+  margin-left: 10px;
+}
+
+#data .currentstate  .totalincome .income-value,#data .currentstate .totalexpense .expense-value{
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+
+#add-tranzaction{
+  grid-area: C;
+
+  font-size: 15px;
+  background: #F0F0F0;
+}
+
+#add-tranzaction form{
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+select
+{
+  border: 0;
+  outline: none;
+  margin-left: 20px;
+  padding:10px 10px 10px 10px;
+  font-family: Arial;
+  font-size: 15px;
+  border:1px solid transparent;
+}
+
+.form{
+  border:0;
+  font-size:15px;
+  margin-left: 30px;
+  margin-right: 15px;
+  color:#979797;
+  outline:none;
+  border:1px solid transparent;
+}
+
+
+ select:focus, .form:focus{
+
+  animation-name: blue-border;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+ .form.text{
+  padding:10px 60px 10px 5px;
+}
+
+ .form.number{
+  padding: 10px 0 10px 5px;
+  width: 100px;
+}
+
+
+/* make arrow from input number disappear*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+button{
+  border: 0;
+}
+.tick
+{
+  margin-left: 30px;
+  outline: none;
+}
+
+/* make button get bigger */
+.tick:hover
+{
+transform:scale(1.10,1.10);
+transform-origin: center;
+transition-duration: 1s;
+}
+
+#tranzactionContainer
+{
+  margin-top: 25px;
+  grid-area: D;
+  display: flex;
+  color:black;
+  font-size: 16px;
+}
+
+#tranzactionContainer .incomeContainer,#tranzactionContainer .expenseContainer
+{
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#tranzactionContainer .incomeContainer
+{
+  margin-left: 10%;
+  margin-right: 2.5%;
+}
+
+#tranzactionContainer .expenseContainer
+{
+  margin-right: 10%;
+  margin-left: 2.5%;
+}
+
+#tranzactionContainer .incomeContainer .income-title, #tranzactionContainer .expenseContainer .expense-title
+{
+  flex-basis: 50px;
+}
+
+#tranzactionContainer .incomeContainer .income-transactions,#tranzactionContainer .expenseContainer .expense-transactions
+{
+  flex-basis: auto;
+}
+
+.income-title,.income
+{
+  color:DodgerBlue;
+}
+
+.transaction-description
+{
+  margin-left: 10px;
+}
+
+div[class^="transaction-nr"]
+{
+  display: flex;
+  padding:15px 0;
+}
+
+div[class^="transaction-nr"] .value
+{
+  margin-left: auto;
+}
+
+.expense, .expense-title
+{
+  color:#FF5353;
+}
+
+div[class^="transaction-nr"]:hover .value{
+  transform: translateX(-25px);
+  transition-duration: 1s;
+}
+
+.delete{
+  display: none;
+}
+
+
+div[class^="transaction-nr"]:hover .delete,.delete:hover{
+  display: inline-block;
+}
+
+
+
+.red:focus{
+  animation-name: red-border;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+/*
+div[class^="transaction-nr"],
+{
+  animation-name: appear;
+  animation-duration: 1s;
+}
+*/
+
+.appear, div[class^="transaction-nr"]{
+  animation-name: appear;
+  animation-duration: 1s;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+body {
+  -ms-overflow-style: none;
+}
+
+/*responsive web design*/
+@media screen and (max-width:950px) {
+  body{
+    grid-template-rows: 64px  80px 250px 130px auto;
+    grid-template-areas:
+    "A A F"
+    "E E E"
+    ". B ."
+    "C C C"
+    "D D D";
+  }
+
+  #brand-space{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width:900px){
+  #tranzactionContainer{
+    flex-direction: column;
+  }
+
+  #tranzactionContainer .incomeContainer, #tranzactionContainer .expenseContainer{
+    margin:0 0 10px 0;
+  }
+
+  #tranzactionContainer div .income-title , #tranzactionContainer div .expense-title{
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width:800px) {
+
+  body{
+
+      grid-template-rows: 64px 64px 80px 300px 200px auto;
+      grid-template-areas:
+      "F F F"
+      "A A A"
+      "E E E"
+      "B B B"
+      "C C C"
+      "D D D";
+      overflow: visible;
+  }
+
+  #brand-space{
+    justify-content: center;
+  }
+  #data{
+    flex-direction: column;
+  }
+
+  #add-tranzaction form{
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
+
+@media screen and (max-width:500px)
+{
+  .register,.login{
+    width: 50%;
+    border-radius: 0;
+    margin: 0;
+  }
+
+}

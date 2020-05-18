@@ -1,0 +1,56 @@
+html{
+  height: 100%;
+}
+body{
+  height: 100%;
+  font-family: 'Concert One', cursive;
+  margin: 0px;
+  min-height: 500px;
+  display: grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-template-rows: 1fr 2fr 1fr;
+  grid-template-areas:
+  "A E F"
+  ". B ."
+  "C C C";
+  color:#FF5353;
+}
+@keyframes red-border {
+from{border-color: transparent;}
+to{border-color:#FF5454;}
+}
+
+form{
+  grid-area: B;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#id_username,#id_password{
+  font-size: 20px;
+  border-radius: 10px;
+  border:1px solid #ccc;
+  color: #FF5353;
+  outline: none;
+
+  margin-bottom:30px;
+  margin-top: 5px;
+}
+
+input[type="submit"]{
+  padding: 20px;
+  font-size: 15px;
+  border:0;
+  border-radius: 20px;
+  background: #FF5353;
+  color: white;
+
+}
+#id_username:focus,#id_password:focus
+{
+  animation-name: red-border;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}

@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Budget App</title>
+    <link rel="stylesheet" href="{% static 'App/CSS/style.css' %}">
+    <link href='https://css.gg/check-o.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+  {% url 'registration-url'  as registration %}
+  {% url 'login-url' as login %}
+
+    <div id="brand-space">
+        <a href="#" id="brand">
+          <img src="{% static 'App/images/piggybank.png' %}" alt=""  id="brand-icon"></img>
+          <p id="brand-text">Budgety</p>
+        </a>
+    </div>
+
+    <div id="balance">
+      <p>Balance:</p>
+      <p class="balance-value">0$</p>
+    </div>
+
+
+    <div class="user-authentication">
+      {% block user %}
+      <div class="register">
+        <a href="{{registration}}">Register</a>
+      </div>
+
+      <div class="login">
+        <a href="{{login}}">Log in</a>
+      </div>
+      {% endblock %}
+    </div>
+
+    <div id="data">
+
+          <div class="currentstate">
+
+            <div class="totalincome">
+              <p>INCOME</p>
+              <p class="income-value">0$</p>
+            </div>
+
+            <div class="totalexpense">
+              <p>EXPENSES</p>
+              <p class="expense-value">0$</p>
+            </div>
+
+          </div>
+
+
+  </div>
+
+    <div id="add-tranzaction">
+    {% block  add-transaction %}
+    <form id="new-transaction-form" method="POST">
+      {% csrf_token %}
+    <select class="type-transaction">
+        <option value="income">+</option>
+        <option value="expense">-</option>
+    </select>
+    <input  type="text" class="form text" value="" name="description" placeholder="Enter description"  >
+    <input  type="number" class="form number" value="" name="valoare" placeholder="Enter sum"  >
+    <button type="submit" name="button"><img  src="{% static 'App/images/bluetick.png' %}" value="" class="tick"></button>
+    </form>
+    {% endblock %}
+    </div>
+
+
+    <div id="tranzactionContainer">
+
+      <div class="incomeContainer">
+
+        <div class="income-title income"><p>INCOME</p></div>
+        <div class="income-transactions">
+          {% block income_transactions %}
+
+          {% endblock %}
+        </div>
+      </div>
+
+
+      <div class="expenseContainer">
+        <div class="expense-title expense"><p>EXPENSES</p></div>
+        <div class="expense-transactions">
+
+        {% block expense_transactions %}
+
+        {% endblock %}
+        </div>
+      </div>
+
+    </div>
+
+{% block transaction-script %}
+<script type="text/javascript">
+ $(document).on('submit','#new-transaction-form',function(e){
+  e.preventDefault();
+  $(".form.text").val('')
+  $(".form.number").val('')
+ });
+ </script>
+{% endblock %}
+<script type="text/javascript">
+  var stat="{% static 'App/images/' %}";
+</script>
+<script  type="text/javascript" src="{% static 'App/Javascript/source.js' %}"></script>
+
+  </body>
+</html>

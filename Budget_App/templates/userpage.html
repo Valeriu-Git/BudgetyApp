@@ -1,0 +1,94 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block user %}
+    <div class="user">
+      <div class="">
+        Welcome
+      </div>
+      <div class="">
+        {{user}}
+      </div>
+    </div>
+  {% url 'signout-url' as signout %}
+    <div class="sign-out">
+      <a href="{{signout}}">Sign out</a>
+    </div>
+{% endblock %}
+
+{% block add-transaction %}
+<form id="new-transaction-form" method="POST">
+  {% csrf_token %}
+<select class="type-transaction">
+    <option value="income">+</option>
+    <option value="expense">-</option>
+</select>
+<input  type="text" class="form text" value="" name="description" placeholder="Enter description"  >
+<input  type="number" class="form number" value="" name="valoare" placeholder="Enter sum"  >
+<button type="submit" name="button"><img  src="{% static 'App/images/bluetick.png' %}" value="" class="tick"></button>
+</form>
+{% endblock %}
+
+{% block income_transactions %}
+{% for income in income_objects %}
+<div class="transaction-nr{{income.id_tip}}">
+  <div class="transaction-description">{{income.description}}</div>
+  <div class="value income">{{income.value}}</div>
+  <form  method="post">
+    {% csrf_token %}
+      <input type="image" src="{% static 'App/images/cancel.png' %}" class="delete">
+  </form>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block expense_transactions %}
+{% for expense in expense_objects %}
+<div class="transaction-nr{{expense.id_tip}}">
+  <div class="transaction-description">{{expense.description}}</div>
+  <div class="value expense">{{expense.value}}</div>
+  <form class="" action="index.html" method="post">
+    {% csrf_token %}
+    <input type="image" src="{% static 'App/images/cancel.png' %}" class="delete">
+  </form>
+</div>
+{% endfor %}
+{% endblock %}
+
+
+
+
+
+
+{% block transaction-script %}
+
+{% url 'userpage-url' as userpage %}
+ <script type="text/javascript">
+  $(document).on('submit','#new-transaction-form',function(e){
+    let x=$(".form.text").val();
+    let y=$(".form.number").val();
+
+    $.ajax({
+      type:'POST',
+      url:'{{userpage}}',
+      data:{
+        description:x,
+        valoare:y,
+        tip:$('.type-transaction').val(),
+        post_type:'adauga',
+        csrfmiddlewaretoken:'{{csrf_token}}'
+      }
+    })
+
+      e.preventDefault();
+      $(".form.text").val('')
+      $(".form.number").val('')
+
+  });
+</script>
+
+<script>
+  var csrf='{{csrf_token}}'
+  var user_page='{{userpage}}'
+</script>
+{% endblock %}
